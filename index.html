@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Vue</title>
 </head>
+
 <body>
     <div id="app">
         <h1>My first app in vue</h1>
-        <p>Let's gooo</p>
         <h3>Le message sera {{ message }}</h3>
         <ul>
             <li v-if="appleCoast > 0">Prix unitaire de la pomme: {{ appleCoast }} Euros</li>
@@ -20,22 +21,28 @@
             <li v-if="bananaCoast > 0">Prix unitaire des bananes: {{ bananaCoast }} Euros</li>
             <li v-if="bananaCount > 0">Nombre de bananes: {{ bananaCount }}</li>
         </ul>
-        
+
         <p>
             Prix total des bananes: {{ bananaTotalCost }}
         </p>
         <hr>
         <p>Prix total: {{ totalCost }}</p>
-        <br>
+        <hr>
         <h2>Mon panier</h2>
         <ul>
             <li v-for="item in shopingCart">
                 <p>{{ item.label }}: {{ item.price }} Euros</p>
                 <p>Quantité: {{ item.quantity }}</p>
-                <a :href="item.url">Lien vers le site</a>
+                <a @click="showFavorite" v-bind:href="item.url">Lien vers le site</a>
             </li>
         </ul>
         <p>Total: {{ totalPrice }}</p>
+        <hr>
+        <Button @click="showFavorite">Cliquer ic</Button>
+        <hr>
+        <label for="changeFavorite">Change your favorite
+            <input type="text" name="changeFavorite" id="changeFavorite" @keyup.enter="changeFavorite">
+        </label>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>console.log( Vue )</script>
@@ -48,7 +55,7 @@
                 bananaCoast: 2,
                 appleCount: 20,
                 bananaCount: 15,
-                shopingCart: [{
+                shopingCart: [ {
                     label: "Apple",
                     price: 5,
                     quantity: 10,
@@ -60,7 +67,8 @@
                     quantity: 20,
                     url: "/banana.com"
                 }
-            ],
+                ],
+                favorite: 'HIGH TECH'
 
             },
             computed: {
@@ -76,15 +84,29 @@
                 {
                     return this.bananaTotalCost + this.appleTotalCost;
                 },
-                totalPrice: function (){
+                totalPrice: function ()
+                {
                     let total = 0;
-                    this.shopingCart.forEach(item => {
+                    this.shopingCart.forEach( item =>
+                    {
                         total += item.price * item.quantity;
-                    })
+                    } )
                     return total;
                 }
+            },
+            methods: {
+                showFavorite: function ()
+                {
+                    alert( this.favorite );
+                },
+                changeFavorite: function ()
+                {
+                    this.favorite = document.getElementById( 'changeFavorite' ).value;
+                },
+                
             }
         } );
     </script>
 </body>
+
 </html>
