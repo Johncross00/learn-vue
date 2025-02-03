@@ -26,6 +26,16 @@
         </p>
         <hr>
         <p>Prix total: {{ totalCost }}</p>
+        <br>
+        <h2>Mon panier</h2>
+        <ul>
+            <li v-for="item in shopingCart">
+                <p>{{ item.label }}: {{ item.price }} Euros</p>
+                <p>Quantité: {{ item.quantity }}</p>
+                <a :href="item.url">Lien vers le site</a>
+            </li>
+        </ul>
+        <p>Total: {{ totalPrice }}</p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>console.log( Vue )</script>
@@ -38,10 +48,20 @@
                 bananaCoast: 2,
                 appleCount: 20,
                 bananaCount: 15,
-                // shopingCart: {
-                //     label: "Apple",
-                //     price: 
-                // }
+                shopingCart: [{
+                    label: "Apple",
+                    price: 5,
+                    quantity: 10,
+                    url: "/apple.com"
+                },
+                {
+                    label: "Banana",
+                    price: 2,
+                    quantity: 20,
+                    url: "/banana.com"
+                }
+            ],
+
             },
             computed: {
                 bananaTotalCost: function ()
@@ -55,6 +75,13 @@
                 totalCost: function ()
                 {
                     return this.bananaTotalCost + this.appleTotalCost;
+                },
+                totalPrice: function (){
+                    let total = 0;
+                    this.shopingCart.forEach(item => {
+                        total += item.price * item.quantity;
+                    })
+                    return total;
                 }
             }
         } );
