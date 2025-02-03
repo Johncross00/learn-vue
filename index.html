@@ -10,15 +10,21 @@
         <h1>My first app in vue</h1>
         <p>Let's gooo</p>
         <h3>Le message sera {{ message }}</h3>
-        <p>Prix unitaire de la banane: {{ bananaCoast }}</p>
-        <p>Nombre de bananes: {{ bananaCount }}</p>
-        <hr>
-        <p>Prix unitaire de la pomme: {{ appleCoast }}</p>
-        <p>Nombre de pommes: {{ appleCount }}</p>
-        <br>
-        <hr><br>
-        <p>Prix total des bananes: {{ bananaTotalCost }}</p>
+        <ul>
+            <li v-if="appleCoast > 0">Prix unitaire de la pomme: {{ appleCoast }} Euros</li>
+            <li v-if="appleCount > 0">Nombre de pommes: {{ appleCount }}</li>
+        </ul>
         <p>Prix total des pommes: {{ appleTotalCost }}</p>
+        <hr width="50%">
+        <ul>
+            <li v-if="bananaCoast > 0">Prix unitaire des bananes: {{ bananaCoast }} Euros</li>
+            <li v-if="bananaCount > 0">Nombre de bananes: {{ bananaCount }}</li>
+        </ul>
+        
+        <p>
+            Prix total des bananes: {{ bananaTotalCost }}
+        </p>
+        <hr>
         <p>Prix total: {{ totalCost }}</p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -31,7 +37,11 @@
                 appleCoast: 3,
                 bananaCoast: 2,
                 appleCount: 20,
-                bananaCount: 15
+                bananaCount: 15,
+                // shopingCart: {
+                //     label: "Apple",
+                //     price: 
+                // }
             },
             computed: {
                 bananaTotalCost: function ()
