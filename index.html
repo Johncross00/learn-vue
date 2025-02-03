@@ -10,16 +10,44 @@
         <h1>My first app in vue</h1>
         <p>Let's gooo</p>
         <h3>Le message sera {{ message }}</h3>
+        <p>Prix unitaire de la banane: {{ bananaCoast }}</p>
+        <p>Nombre de bananes: {{ bananaCount }}</p>
+        <hr>
+        <p>Prix unitaire de la pomme: {{ appleCoast }}</p>
+        <p>Nombre de pommes: {{ appleCount }}</p>
+        <br>
+        <hr><br>
+        <p>Prix total des bananes: {{ bananaTotalCost }}</p>
+        <p>Prix total des pommes: {{ appleTotalCost }}</p>
+        <p>Prix total: {{ totalCost }}</p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>console.log(Vue)</script>
+    <script>console.log( Vue )</script>
     <script>
-        const app = new Vue({
+        const app = new Vue( {
             el: '#app',
             data: {
-                message: 'Hello Vue!'
+                message: 'Hello Vue!',
+                appleCoast: 3,
+                bananaCoast: 2,
+                appleCount: 20,
+                bananaCount: 15
+            },
+            computed: {
+                bananaTotalCost: function ()
+                {
+                    return this.bananaCoast * this.bananaCount;
+                },
+                appleTotalCost: function ()
+                {
+                    return this.appleCoast * this.appleCount;
+                },
+                totalCost: function ()
+                {
+                    return this.bananaTotalCost + this.appleTotalCost;
+                }
             }
-        });
+        } );
     </script>
 </body>
 </html>
