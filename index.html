@@ -9,7 +9,12 @@
 
 <body>
     <div id="app">
+        <h1 ref="title">{{ message }}</h1>
         <h1>My first app in vue</h1>
+        <button @click="changeMessage">Changer le message</button>
+            <button @click="isVisible = false">Supprimer le composant</button>
+
+
         <h3>Le message sera {{ message }}</h3>
         <ul>
             <li v-if="appleCoast > 0">Prix unitaire de la pomme: {{ appleCoast }} Euros</li>
@@ -54,6 +59,7 @@
             data: {
                 message: 'Hello Vue!',
                 appleCoast: 3,
+                isVisible: true,
                 bananaCoast: 2,
                 appleCount: 20,
                 bananaCount: 15,
@@ -105,8 +111,83 @@
                 {
                     this.favorite = document.getElementById( 'changeFavorite' ).value;
                 },
+                changeMessage ()
+                {
+                    this.message = "Salut Vue.js !";
+                }
                 
+            },
+            beforeCreate: function ()
+            {
+                console.log( 'beforeCreate' );
+            },
+            created: function ()
+            {
+                console.log( 'created' );
+            },
+            beforeMount: function ()
+            {
+                console.log( 'beforeMount' );
+            },
+            mounted: function ()
+            {
+                console.log( 'mounted' );
+            },
+            beforeUpdate: function ()
+            {
+                console.log( 'beforeUpdate' );
+            },
+            updated: function ()
+            {
+                console.log( 'updated' );
+            },
+            beforeDestroy: function ()
+            {
+                console.log( 'beforeDestroy' );
+            },
+            destroyed: function ()
+            {
+                console.log( 'destroyed' );
+            },
+
+            
+            beforeCreate ()
+            {
+                console.log( "1️⃣ beforeCreate : Les données ne sont PAS encore accessibles !" );
+                console.log( this.message ); // ❌ Undefined
+            },
+            created ()
+            {
+                console.log( "2️⃣ created : Les données sont maintenant accessibles !" );
+                console.log( this.message ); // ✅ "Hello Vue!"
+            },
+            beforeMount ()
+            {
+                console.log( "3️⃣ beforeMount : Le composant va être monté, mais pas encore dans le DOM." );
+                console.log( this.$refs.title ); // ❌ undefined
+            },
+            mounted ()
+            {
+                console.log( "4️⃣ mounted : Le composant est monté !" );
+                console.log( this.$refs.title.textContent ); // ✅ "Hello Vue!"
+            },
+            beforeUpdate ()
+            {
+                console.log( "5️⃣ beforeUpdate : Le DOM va être mis à jour." );
+            },
+            updated ()
+            {
+                console.log( "6️⃣ updated : Le DOM a été mis à jour." );
+            },
+            beforeUnmount ()
+            {
+                console.log( "7️⃣ beforeUnmount : Le composant va être détruit." );
+            },
+            unmounted ()
+            {
+                console.log( "8️⃣ unmounted : Le composant est détruit." );
             }
+
         } );
     </script>
 </body>
