@@ -1,4 +1,6 @@
 <template>
+  <CustomBanner topIcon="🔝" leftIcon="⬅️" rightIcon="➡️" bottomIcon="⬇️" text="lorem ipsum dolor sit amet">
+  </CustomBanner>
   <div id="receiver">
     <Receiver />
   </div>
@@ -6,16 +8,18 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <script>
-import Receiver from './components/Receiver.vue';
+import CustomBanner from "./components/CustomBanner.vue";
+import Receiver from "./components/Receiver.vue";
 export default {
   components: {
     Receiver,
-  }
-}
+    CustomBanner,
+  },
+};
 </script>
 
 <style lang="scss">
