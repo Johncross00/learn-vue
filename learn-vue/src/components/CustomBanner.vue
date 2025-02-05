@@ -1,8 +1,8 @@
 <template>
     <div class="banner">
-        <span v-if="topIcon" :class="topIcon">{{ topIcon }}</span>
+        <slot name="top"></slot>
         <slot></slot>
-        <span v-if="bottomIcon" :class="bottomIcon">{{ bottomIcon }}</span>
+        <slot name="bottom"></slot>
     </div>
 
 </template>
@@ -11,13 +11,6 @@
 <script>
 export default{
     name: "CustomBanner",
-    props:{
-        topIcon: String,
-        leftIcon: String,
-        rightIcon: String,
-        bottomIcon: String,
-        text: String
-    }
 }
 
 

@@ -1,11 +1,24 @@
 <template>
-  <CustomBanner topIcon="🔝" bottomIcon="⬇️">
+  <CustomBanner>
+    <template v-slot:top>
+      <span>🔝</span>
+    </template>
+    <template v-slot:bottom>
+      <span>⬇️</span>
+    </template>
     <p>
       <span>⬅️</span>
       lorem ipsum dolor sit amet
       <span>➡️</span>
     </p>
   </CustomBanner>
+  <div class="container">
+    <h1>👨‍👩‍👦 Communication Parent - Enfant</h1>
+    <h2>📢 Message du parent : <span class="message">{{ messageParent }}</span></h2>
+
+    <!-- Intégration du composant enfant -->
+    <ChildComponent @update-message="updateMessage" />
+  </div>
   <div id="receiver">
     <Receiver />
   </div>
@@ -19,15 +32,38 @@
 <script>
 import CustomBanner from "./components/CustomBanner.vue";
 import Receiver from "./components/Receiver.vue";
+import ChildComponent from "./components/ChildComponent.vue";
 export default {
   components: {
     Receiver,
     CustomBanner,
+    ChildComponent,
   },
+  data() {
+    return {
+      messageParent: "👋 Bonjour, je suis le parent !" // Message par défaut
+    };
+  },
+  methods: {
+    updateMessage(nouveauMessage) {
+      this.messageParent = nouveauMessage; // Mise à jour du message
+    }
+  }
 };
 </script>
 
 <style lang="scss">
+
+.container {
+  text-align: center;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+}
+.message {
+  color: blue;
+  font-weight: bold;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
