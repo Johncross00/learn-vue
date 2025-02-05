@@ -1,5 +1,10 @@
 <template>
-  <CustomBanner topIcon="🔝" leftIcon="⬅️" rightIcon="➡️" bottomIcon="⬇️" text="lorem ipsum dolor sit amet">
+  <CustomBanner topIcon="🔝" bottomIcon="⬇️">
+    <p>
+      <span>⬅️</span>
+      lorem ipsum dolor sit amet
+      <span>➡️</span>
+    </p>
   </CustomBanner>
   <div id="receiver">
     <Receiver />

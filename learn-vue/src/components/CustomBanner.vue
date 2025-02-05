@@ -1,11 +1,7 @@
 <template>
     <div class="banner">
         <span v-if="topIcon" :class="topIcon">{{ topIcon }}</span>
-        <p>
-            <span v-if="leftIcon" :class="leftIcon">{{ leftIcon }}</span>
-            {{ text }}
-            <span v-if="rightIcon" :class="rightIcon">{{ rightIcon }}</span>
-        </p>
+        <slot></slot>
         <span v-if="bottomIcon" :class="bottomIcon">{{ bottomIcon }}</span>
     </div>
 
