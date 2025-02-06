@@ -12,7 +12,8 @@
       <span>➡️</span>
     </p>
   </CustomBanner>
-  <p>My birthday is : {{ day }}/ {{ month }}/ {{ year }}</p>
+  <p>(from mapState) My birthday is : {{ day }}/ {{ month }}/ {{ year }}</p>
+  <p>(from mapGetter) My birthday is : {{ formattedDate }}</p>
   <div class="container">
     <h1>👨‍👩‍👦 Communication Parent - Enfant</h1>
     <h2>📢 Message du parent : <span class="message">{{ messageParent }}</span></h2>
@@ -35,6 +36,7 @@ import CustomBanner from "./components/CustomBanner.vue";
 import Receiver from "./components/Receiver.vue";
 import ChildComponent from "./components/ChildComponent.vue";
 import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   components: {
     Receiver,
@@ -52,7 +54,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(['day', 'month', 'year'])
+    ...mapState(['day', 'month', 'year']),
+    ...mapGetters(['formattedDate'])
   }
 };
 </script>

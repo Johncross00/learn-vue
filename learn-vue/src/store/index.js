@@ -7,6 +7,7 @@ export default createStore({
     year: 2005
   },
   getters: {
+    formattedDate: (state) => `${state.day}/${state.month}/${state.year}`
   },
   mutations: {
   },
