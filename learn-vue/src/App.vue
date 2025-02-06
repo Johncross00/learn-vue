@@ -40,6 +40,7 @@ import Receiver from "./components/Receiver.vue";
 import ChildComponent from "./components/ChildComponent.vue";
 import { mapState } from "vuex";
 import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
 export default {
   components: {
     Receiver,
@@ -58,9 +59,10 @@ export default {
     incrementDay(){
       this.$store.commit('INCREMENT_DAY')
     },
-    incrementMonth(){
-      this.$store.dispatch('incrementMonth')
-    }
+    // incrementMonth(){
+    //   this.$store.dispatch('incrementMonth')
+    // },
+    ...mapActions(['incrementMonth'])
   },
   computed: {
     ...mapState(['day', 'month', 'year']),
