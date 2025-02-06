@@ -14,7 +14,9 @@
   </CustomBanner>
   <p>(from mapState) My birthday is : {{ day }}/ {{ month }}/ {{ year }}</p>
   <p>(from mapGetter) My birthday is : {{ formattedDate }}</p>
-  <button @click="incrementDay">Add +</button>
+  <button @click="incrementDay">(from mutation) Add Day +</button>
+  <hr>
+  <button @click="incrementMonth">Add Month</button>
   <div class="container">
     <h1>👨‍👩‍👦 Communication Parent - Enfant</h1>
     <h2>📢 Message du parent : <span class="message">{{ messageParent }}</span></h2>
@@ -55,6 +57,9 @@ export default {
     },
     incrementDay(){
       this.$store.commit('INCREMENT_DAY')
+    },
+    incrementMonth(){
+      this.$store.dispatch('incrementMonth')
     }
   },
   computed: {

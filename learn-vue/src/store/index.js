@@ -12,9 +12,24 @@ export default createStore({
   mutations: {
     INCREMENT_DAY(state) {
       state.day++
+    },
+    INCREMENT_MONTH(state) {
+      state.month++;
+    },
+    INCREMENT_YEAR(state) {
+      state.year++;
+      state.month = 1
     }
   },
   actions: {
+    incrementMonth(context){
+      if(context.state.month + 1 > 12){
+        context.commit('INCREMENT_YEAR')
+      }
+      else{
+        context.commit("INCREMENT_MONTH");
+      }
+    }
   },
   modules: {
   }
