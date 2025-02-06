@@ -10,6 +10,9 @@ export default createStore({
     formattedDate: (state) => `${state.day}/${state.month}/${state.year}`
   },
   mutations: {
+    INCREMENT_DAY(state) {
+      state.day++
+    }
   },
   actions: {
   },

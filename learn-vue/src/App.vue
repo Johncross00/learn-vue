@@ -14,6 +14,7 @@
   </CustomBanner>
   <p>(from mapState) My birthday is : {{ day }}/ {{ month }}/ {{ year }}</p>
   <p>(from mapGetter) My birthday is : {{ formattedDate }}</p>
+  <button @click="incrementDay">Add +</button>
   <div class="container">
     <h1>👨‍👩‍👦 Communication Parent - Enfant</h1>
     <h2>📢 Message du parent : <span class="message">{{ messageParent }}</span></h2>
@@ -51,6 +52,9 @@ export default {
   methods: {
     updateMessage(nouveauMessage) {
       this.messageParent = nouveauMessage; // Mise à jour du message
+    },
+    incrementDay(){
+      this.$store.commit('INCREMENT_DAY')
     }
   },
   computed: {
