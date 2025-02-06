@@ -12,11 +12,11 @@
       <span>➡️</span>
     </p>
   </CustomBanner>
-  <p>(from mapState) My birthday is : {{ day }}/ {{ month }}/ {{ year }}</p>
-  <p>(from mapGetter) My birthday is : {{ formattedDate }}</p>
-  <button @click="incrementDay">(from mutation) Add Day +</button>
+  <p>(from State) My birthday is : {{ day }}/ {{ month }}/ {{ year }}</p>
+  <p>(from Getter) My birthday is : {{ formattedDate }}</p>
+  <button @click="INCREMENT_DAY">(from mMtation) Add Day +</button>
   <hr>
-  <button @click="incrementMonth">Add Month</button>
+  <button @click="incrementMonth">(from Action) Add Month</button>
   <p>My real name is ktm but: {{ uppercaseName }}</p>
   <div class="container">
     <h1>👨‍👩‍👦 Communication Parent - Enfant</h1>
@@ -42,7 +42,7 @@ import ChildComponent from "./components/ChildComponent.vue";
 import { mapState } from "vuex";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
-// import { mapMutations } from "vuex";
+import { mapMutations } from "vuex";
 export default {
   components: {
     Receiver,
@@ -58,13 +58,14 @@ export default {
     updateMessage(nouveauMessage) {
       this.messageParent = nouveauMessage; // Mise à jour du message
     },
-    incrementDay(){
-      this.$store.commit('INCREMENT_DAY')
-    },
+    // incrementDay(){
+    //   this.$store.commit('INCREMENT_DAY')
+    // },
     // ...mapMutations(['incrementDay']),
     // incrementMonth(){
     //   this.$store.dispatch('incrementMonth')
     // },
+    ...mapMutations(['INCREMENT_DAY']),
     ...mapActions(['incrementMonth'])
   },
   computed: {
