@@ -17,6 +17,7 @@
   <button @click="incrementDay">(from mutation) Add Day +</button>
   <hr>
   <button @click="incrementMonth">Add Month</button>
+  <p>My real name is ktm but: {{ uppercaseName }}</p>
   <div class="container">
     <h1>👨‍👩‍👦 Communication Parent - Enfant</h1>
     <h2>📢 Message du parent : <span class="message">{{ messageParent }}</span></h2>
@@ -41,7 +42,7 @@ import ChildComponent from "./components/ChildComponent.vue";
 import { mapState } from "vuex";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
-import { mapMutations } from "vuex";
+// import { mapMutations } from "vuex";
 export default {
   components: {
     Receiver,
@@ -57,10 +58,10 @@ export default {
     updateMessage(nouveauMessage) {
       this.messageParent = nouveauMessage; // Mise à jour du message
     },
-    // incrementDay(){
-    //   this.$store.commit('INCREMENT_DAY')
-    // },
-    ...mapMutations(['INCREMENT_DAY']),
+    incrementDay(){
+      this.$store.commit('INCREMENT_DAY')
+    },
+    // ...mapMutations(['incrementDay']),
     // incrementMonth(){
     //   this.$store.dispatch('incrementMonth')
     // },
@@ -68,7 +69,8 @@ export default {
   },
   computed: {
     ...mapState(['day', 'month', 'year']),
-    ...mapGetters(['formattedDate'])
+    ...mapGetters(['formattedDate']),
+    ...mapGetters(['uppercaseName'])
   }
 };
 </script>
