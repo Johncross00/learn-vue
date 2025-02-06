@@ -41,6 +41,7 @@ import ChildComponent from "./components/ChildComponent.vue";
 import { mapState } from "vuex";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
+import { mapMutations } from "vuex";
 export default {
   components: {
     Receiver,
@@ -56,9 +57,10 @@ export default {
     updateMessage(nouveauMessage) {
       this.messageParent = nouveauMessage; // Mise à jour du message
     },
-    incrementDay(){
-      this.$store.commit('INCREMENT_DAY')
-    },
+    // incrementDay(){
+    //   this.$store.commit('INCREMENT_DAY')
+    // },
+    ...mapMutations(['INCREMENT_DAY']),
     // incrementMonth(){
     //   this.$store.dispatch('incrementMonth')
     // },
