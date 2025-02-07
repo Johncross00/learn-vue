@@ -12,26 +12,36 @@
       <span>➡️</span>
     </p>
   </CustomBanner>
-  <p>(from State) My birthday is : {{ day }}/ {{ month }}/ {{ year }}</p>
-  <p>(from Getter) My birthday is : {{ formattedDate }}</p>
-  <button @click="INCREMENT_DAY">(from Mutation) Add Day +</button>
+
+  <p class="date-info">(from State) My birthday is : {{ day }}/ {{ month }}/ {{ year }}</p>
+  <p class="date-info">(from Getter) My birthday is : {{ formattedDate }}</p>
+
+  <!-- Bouton avec effet Material Design -->
+  <button @click="INCREMENT_DAY" class="action-btn">(from Mutation) Add Day +</button>
+  
   <hr>
-  <button @click="incrementMonth">(from Action) Add Month</button>
-  <p>My real name is ktm but: {{ uppercaseName }}</p>
+  
+  <button @click="incrementMonth" class="action-btn">(from Action) Add Month</button>
+  
+  <p class="real-name">My real name is ktm but with a upperCase function with Getters: {{ uppercaseName }}</p>
+
   <div class="container">
-    <h1>👨‍👩‍👦 Communication Parent - Enfant</h1>
-    <h2>📢 Message du parent : <span class="message">{{ messageParent }}</span></h2>
+    <h1 class="title">👨‍👩‍👦 Communication Parent - Enfant</h1>
+    <h2 class="message-parent">📢 Message du parent : <span class="message">{{ messageParent }}</span></h2>
 
     <!-- Intégration du composant enfant -->
     <ChildComponent @update-message="updateMessage" />
   </div>
+
   <div id="receiver">
     <Receiver />
   </div>
+
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/" class="nav-link">Home</router-link> |
+    <router-link to="/about" class="nav-link">About</router-link>
   </nav>
+
   <router-view />
 </template>
 
@@ -39,10 +49,8 @@
 import CustomBanner from "./components/CustomBanner.vue";
 import Receiver from "./components/Receiver.vue";
 import ChildComponent from "./components/ChildComponent.vue";
-import { mapState } from "vuex";
-import { mapGetters } from "vuex";
-import { mapActions } from "vuex";
-import { mapMutations } from "vuex";
+import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+
 export default {
   components: {
     Receiver,
@@ -51,61 +59,86 @@ export default {
   },
   data() {
     return {
-      messageParent: "👋 Bonjour, je suis le parent !" // Message par défaut
+      messageParent: "👋 Bonjour, je suis le parent !"
     };
   },
   methods: {
     updateMessage(nouveauMessage) {
-      this.messageParent = nouveauMessage; // Mise à jour du message
+      this.messageParent = nouveauMessage;
     },
-    // incrementDay(){
-    //   this.$store.commit('INCREMENT_DAY')
-    // },
-    // ...mapMutations(['incrementDay']),
-    // incrementMonth(){
-    //   this.$store.dispatch('incrementMonth')
-    // },
     ...mapMutations(['INCREMENT_DAY']),
-    ...mapActions(['incrementMonth'])
+    ...mapActions(['incrementMonth']),
   },
   computed: {
     ...mapState(['day', 'month', 'year']),
-    ...mapGetters(['formattedDate']),
-    ...mapGetters(['uppercaseName'])
+    ...mapGetters(['formattedDate', 'uppercaseName']),
   }
 };
 </script>
 
 <style lang="scss">
-
+/* Styles généraux */
 .container {
   text-align: center;
   margin-top: 50px;
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
+
+.message-parent {
+  font-size: 18px;
+  font-weight: 600;
+  color: #212121;
+}
+
 .message {
-  color: blue;
+  color: #FF5722;
   font-weight: bold;
 }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.date-info {
+  color: #2196F3;
+  font-size: 18px;
+  margin: 10px 0;
 }
 
+/* Boutons style Material Design */
+.action-btn {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 4px;
+  padding: 12px 25px;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.action-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.real-name {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Navigation style */
 nav {
   padding: 30px;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.nav-link {
+  font-weight: 600;
+  color: #2c3e50;
+  text-decoration: none;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.nav-link:hover {
+  color: #42b983;
+}
+
+#receiver {
+  margin-top: 50px;
 }
 </style>
