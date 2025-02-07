@@ -14,7 +14,7 @@
   </CustomBanner>
   <p>(from State) My birthday is : {{ day }}/ {{ month }}/ {{ year }}</p>
   <p>(from Getter) My birthday is : {{ formattedDate }}</p>
-  <button @click="INCREMENT_DAY">(from mMtation) Add Day +</button>
+  <button @click="INCREMENT_DAY">(from Mutation) Add Day +</button>
   <hr>
   <button @click="incrementMonth">(from Action) Add Month</button>
   <p>My real name is ktm but: {{ uppercaseName }}</p>
